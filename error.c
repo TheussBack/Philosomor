@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/03 15:37:57 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/09 13:31:52 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,17 @@ void	exit_error(char *str)
 		write (1, str, ft_strlen(str));
 }
 
-void	clear(t_info *info)
+int	clear(t_philo *philo, int nb)
 {
-	//destroy les mutex
+	int	i;
+
+	i = 0;
+	while (i++ < nb)
+	{
+		if (pthread_mutex_destroy(&(philo[i].right_fork)) != 0)
+			return (1);
+		if (pthread_mutex_destroy(&(philo[i].mutex)) != 0)
+			return (2);
+	}
+	return (0);
 }

@@ -1,32 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 17:10:05 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/09 11:31:38 by hrobin           ###   ########.fr       */
+/*   Created: 2023/05/09 11:00:31 by hrobin            #+#    #+#             */
+/*   Updated: 2023/05/09 13:18:47 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_usleep(long int time_in_ms)
+int	ft_atoi(char *str)
 {
-	long int	start_time = 0;
+	int res;
+	int	s;
+	int i;
 
-	start_time = actual_time();
-	while((actual_time()-start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
+	res = 0;
+	s = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			s = -1;
+	}
+	while (str[i] >= '0' && str[i] < '9')
+	{
+		res *= 10;
+		res += str[i] - '0';
+		i++;
+	}
+	return (res * s);
 }
 
-long int	actual_time(void)
+ssize_t	ft_strlen(char *str)
 {
-	long int	time = 0;
-	struct timeval	curent_time;
-	if (gettimeofday(&curent_time, NULL) == -1)
-		exit_error("error: gettimeofday -1\n");
-	time = (curent_time.tv_sec * 1000) + (curent_time.tv_usec / 1000);
-	return (time);
+	ssize_t	i;
+
+	i = -1;
+	while (str[i])
+		++i;
+	return(i);
 }
