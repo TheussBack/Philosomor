@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:00:31 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/09 13:18:47 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/11 23:36:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
-	int res;
+	long res;
 	int	s;
 	int i;
 
@@ -27,6 +27,7 @@ int	ft_atoi(char *str)
 	{
 		if (str[i] == '-')
 			s = -1;
+		i++;
 	}
 	while (str[i] >= '0' && str[i] < '9')
 	{

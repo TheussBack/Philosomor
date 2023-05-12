@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:38:44 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/09 13:20:50 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/11 23:28:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	clear(t_philo *philo, int nb);
 
 //utils
 ssize_t	ft_strlen(char *str);
-int	ft_atoi(char *str);
+long	ft_atoi(char *str);
 
 //
 void	do_threads(t_info *info);
