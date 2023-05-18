@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/09 11:56:21 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/18 16:10:31 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_philos(t_info *info)
 	}
 }
 
-void	set_philo(t_info *info, int ac, char **av)
+int	set_philo(t_info *info, int ac, char **av)
 {
 	info->nb_philo = ft_atoi(av[1]);
 	info->ttd = ft_atoi(av[2]);
@@ -70,17 +70,21 @@ void	set_philo(t_info *info, int ac, char **av)
 		info->must_eat = 0;
 	if (info->nb_philo < 2 || info->nb_philo > 200 || info->ttd < 0
 		|| info->tte < 0 || info->tts < 0 || info->must_eat < 0)
-		return ;
+		return (1);
+	return (0);
 }
 
-t_philo	*init(t_info *info, int ac, char **av)
+t_philo	*init(t_info *info)
 {
-	set_philo(info, ac, av);
+	info->philo = malloc(sizeof(t_philo) * info->nb_philo);
+	if (!info->nb_philo)
+		return (NULL);
 	int i = -1;
 	while (++i < info->nb_philo)
 		if (pthread_join(info->philo[i].philo_id, NULL) != 0)
 			return (NULL);
 	init_philos(info);
+	write (1, "init_philo check\n", 17);
 	if (init_mutexes_info(info))
 		return (NULL);
 	if (init_mutexes_philo(info->philo, info->nb_philo))

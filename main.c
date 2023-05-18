@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/09 13:45:51 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/18 15:41:42 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (printf("error: wrong nb of arguments\n"), 1);
 	checkargs(av);
-	info.philo = init(&info, ac, av);
+	if ((set_philo(&info, ac, av)))
+		(printf("wrong args\n"), exit(EXIT_FAILURE));
+	write (1,"set philo check\n", 16);
+	info.philo = init(&info);
+	write (1, "init check\n", 11);
 	if (info.philo == NULL)
 		exit_error("error: fatal\n");
 	//clear();

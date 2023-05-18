@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:38:44 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/11 23:28:06 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/18 15:39:53 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	checkargs(char **av);
 int	is_digit(char *stack);
 
 //init
-t_philo *init(t_info *info, int ac, char **av);
+t_philo *init(t_info *info);
 void	init_philos(t_info *info);
-void	set_philo(t_info *info, int ac, char **av);
+int	set_philo(t_info *info, int ac, char **av);
 int	init_mutexes_philo(t_philo *philo, int nb_philo);
 int	init_mutexes_info(t_info *info);
 
