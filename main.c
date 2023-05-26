@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/18 15:41:42 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:40:54 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	*routine()
 {
+	printf("ARRIVE A ROUTINE\n");
 	return (0);
 }
 
@@ -21,21 +22,22 @@ void	do_threads(t_info *info)
 {
 	int	i;
 
-	i = 0;
-	while (i < info->nb_philo)
+	i = -1;
+	while ((++i < info->nb_philo) && (&info->philo[i]))
 	{
 		if (i % 2 == 0)
-			if(pthread_create(&(info->philo[i].philo_id), NULL, routine, NULL))
+			if(pthread_create(&(info->philo[i].philo_id), NULL, &routine, NULL))
 			//manque certainement les arguents de la routine mais ??
 				return ;
 	}
 	i = -1;
-	while (i < info->nb_philo)
+	while ((++i < info->nb_philo) && (&info->philo[i]))
 	{
 		if (i % 2 != 0)
-			if(pthread_create(&(info->philo[i].philo_id), NULL, routine, NULL))
+			if(pthread_create(&(info->philo[i].philo_id), NULL, &routine, NULL))
 				return ;
 	}
+	printf("%d\n", i);
 }
 
 int	main(int ac, char **av)
