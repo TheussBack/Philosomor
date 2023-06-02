@@ -6,16 +6,27 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/26 16:40:54 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/30 16:32:50 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*routine()
+void	*routine(void *philo)
 {
-	printf("ARRIVE A ROUTINE\n");
-	return (0);
+	//if (nb_philo == 1)
+	while (is_dead(philo))
+	{
+		if (is_dead(philo))
+			return (philo);
+		eat(philo);
+		if (is_dead(philo))
+			return (philo);
+		sleep(philo);
+		if (is_dead(philo))
+			return (philo);
+		think(philo);
+	}
 }
 
 void	do_threads(t_info *info)

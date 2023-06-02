@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/26 14:54:33 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/30 12:48:43 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ t_philo	*init(t_info *info)
 	if (!info->nb_philo)
 		return (NULL);
 	int i = -1;
-	// while (++i < info->nb_philo)
-	// 	if (pthread_join(info->philo[i].philo_id, NULL) != 0)
-	// 		return (NULL);
 	init_philos(info);
 	write (1, "init_philo check\n", 17);
 	if (init_mutexes_info(info))

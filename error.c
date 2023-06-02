@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/18 15:23:09 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/30 16:29:33 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ int	clear(t_philo *philo, int nb)
 			return (2);
 	}
 	return (0);
+}
+
+void	id_dead(t_philo *philo)
+{
+	if (actual_time() - philo->last_bite >= philo->info->ttd)
+		//????
 }

@@ -6,18 +6,18 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:10:05 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/26 14:37:31 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/30 16:12:45 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_usleep(long int time_in_ms)
+void	ft_usleep(long int time_in_ms, t_philo *philo)
 {
 	long int	start_time = 0;
 
 	start_time = actual_time();
-	while((actual_time()-start_time) < time_in_ms)
+	while((actual_time()-start_time) < time_in_ms && is_dead(philo))
 		usleep(time_in_ms / 10);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:38:44 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/18 15:39:53 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/05/30 16:36:18 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <pthread.h>
 #include <sys/time.h>
 #include <stdio.h>
+#include <stddef.h>
+#include <limits.h>
+#include <sys/types.h>
 
 # define	BREATHING 0
 # define	LIFELESS -1
@@ -54,7 +57,7 @@ typedef struct	s_info
 }			t_info;
 
 //time
-void	ft_usleep(long int time_in_ms);
+void	ft_usleep(long int time_in_ms, t_philo *philo);
 long int	actual_time(void);
 
 //parse
@@ -62,11 +65,11 @@ int	checkargs(char **av);
 int	is_digit(char *stack);
 
 //init
-t_philo *init(t_info *info);
+int	init_mutexes_info(t_info *info);
+int	init_mutexes_philo(t_philo *philo, int nb_philo);
 void	init_philos(t_info *info);
 int	set_philo(t_info *info, int ac, char **av);
-int	init_mutexes_philo(t_philo *philo, int nb_philo);
-int	init_mutexes_info(t_info *info);
+t_philo *init(t_info *info);
 
 //error
 void	exit_error(char *str);
@@ -76,9 +79,15 @@ int	clear(t_philo *philo, int nb);
 ssize_t	ft_strlen(char *str);
 long	ft_atoi(char *str);
 
+//actions
+void	sleep(t_philo *philo);
+int	eat(t_philo *philo);
+int	forking(t_philo *philo);
+void	think(t_philo	*philo);
+
 //
 void	do_threads(t_info *info);
-void	*routine();
+void	*routine(void *philo);
 
 
 #endif
