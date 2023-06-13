@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 13:55:30 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 14:50:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	clear(t_philo *philo, int nb)
 
 int	is_dead(t_philo *philo)
 {
+	// printf("%li - %i >= %i\n", actual_time(), philo->last_bite, philo->info->ttd);
 	if (actual_time() - philo->last_bite >= (long int)philo->info->ttd)
 	{
 		if (philo->info->d_id != -1)
@@ -45,9 +46,9 @@ int	is_dead(t_philo *philo)
 	}
 	if (philo->info->d_id != -1)
 		return (0);
-	if (philo->info->not != -1 && philo->eat_count >= philo->info->not)
-		// write (1, "dans is dead\n", 13);
-		return (0);
+	// if (philo->info->not != -1 && philo->eat_count >= philo->info->not)
+	// 	write (1, "dans is dead\n", 13);
+		// return (0);
 	return (1);
 }
 

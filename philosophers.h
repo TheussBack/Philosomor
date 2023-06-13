@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:38:44 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/08 01:11:26 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 14:22:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ typedef struct	s_info
 	int	ttd;
 	int	tte;
 	int	tts;
-	int	must_eat;
-	int	d_id;
 	int	not;
+	int	d_id;
 	t_philo	*philo;
 	pthread_mutex_t	somebody_dead;
 	pthread_mutex_t	food;

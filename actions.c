@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:48 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/07 17:50:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 14:35:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	sleeping(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (i == 0 && is_dead(philo))
-	{
+	// i = 0;
+	// while (i == 0 && is_dead(philo))
+	// {
 		if (forking(philo))
 		{
 			philo_print(philo, "is_eating");
@@ -33,9 +33,9 @@ void	eat(t_philo *philo)
 			philo->eat_count++;
 			pthread_mutex_unlock(philo->left_fork);
 			pthread_mutex_unlock(&philo->right_fork);
-			i++;
+			// i++;
 		}
-	}
+	// }
 }
 
 int	forking(t_philo *philo)

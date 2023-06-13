@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/07 18:15:10 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 14:22:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int	set_philo(t_info *info, int ac, char **av)
 	info->tte = ft_atoi(av[3]);
 	info->tts =ft_atoi(av[4]);
 	if (ac == 6)
-		info->must_eat = ft_atoi(av[5]);
+		info->not = ft_atoi(av[5]);
 	else
-		info->must_eat = 0;
+		info->not = 0;
 	if (info->nb_philo > 200 || info->ttd < 0
-		|| info->tte < 0 || info->tts < 0 || info->must_eat < 0)
+		|| info->tte < 0 || info->tts < 0 || info->not < 0)
 		return (1);
 	return (0);
 }
