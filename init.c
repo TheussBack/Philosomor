@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 14:22:07 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 18:16:45 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ t_philo	*init(t_info *info)
 		return (NULL);
 	int i = -1;
 	init_philos(info);
-	write (1, "init_philo check\n", 17);
+	// write (1, "init_philo check\n", 17);
 	if (init_mutexes_info(info))
 		return (NULL);
-	write (1, "init_mutex check\n", 17);
+	// write (1, "init_mutex check\n", 17);
 	if (init_mutexes_philo(info->philo, info->nb_philo))
 		return (NULL);
-	write (1, "init_mutexes_philo check\n", 25);
+	// write (1, "init_mutexes_philo check\n", 25);
 	do_threads(info);
-	write (1, "apres do threads\n", 17);
+	// write (1, "apres do threads\n", 17);
 	i = -1;
 	while (++i < info->nb_philo)
 	{

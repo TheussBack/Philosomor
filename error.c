@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 14:50:27 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 18:16:06 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ int	clear(t_philo *philo, int nb)
 	int	i;
 
 	i = 0;
-	while (i++ < nb)
+	while (i < nb)
 	{
-		if (pthread_mutex_destroy(&(philo[i].right_fork)) != 0)
+		if (pthread_mutex_destroy((philo[i].left_fork)) != 0)
 			return (1);
 		if (pthread_mutex_destroy(&(philo[i].mutex)) != 0)
 			return (2);
+		i++;
 	}
 	return (0);
 }
@@ -54,14 +55,13 @@ int	is_dead(t_philo *philo)
 
 void	creve(t_philo *philo)
 {
-	write (1, "test\n", 5);
-	pthread_mutex_lock(&(philo->info->lock));
+	pthread_mutex_lock(&(philo->info->somebody_dead));
 	if (philo->info->d_id != -1)
 	{
-		pthread_mutex_unlock(&(philo->info->lock));
+		pthread_mutex_unlock(&(philo->info->somebody_dead));
 		return ;
 	}
 	printf("[%lu] {%d} %s\n", actual_time(), philo->pos + 1, "died");
 	philo->status = LIFELESS;
-	pthread_mutex_unlock(&(philo->info->lock));
+	pthread_mutex_unlock(&(philo->info->somebody_dead));
 }

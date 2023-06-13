@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 14:58:56 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 18:14:41 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,12 @@ void	*routine(void *phil)
 		return (NULL);
 	}
 	if (philo->pos % 2 == 0)
-		usleep(100);
-	printf("%i\n", philo->pos);
+		usleep(50);
+	// printf("%i\n", philo->pos);
 	while (is_dead(philo))
 	{
-		// if (!is_dead(philo))
-		// 	return (philo);
-		// write (1, "before eat\n", 11);
 		eat(philo);
-		// if (is_dead(philo))
-		// 	return (philo);
 		sleeping(philo);
-		// if (is_dead(philo))
-		// 	return (philo);
 		think(philo);
 	}
 	return (0);
@@ -65,7 +58,9 @@ void	do_threads(t_info *info)
 int	main(int ac, char **av)
 {
 	t_info	info;
+	int i;
 
+	i = 0;
 	if (ac < 5 || ac > 6)
 		return (printf("error: wrong nb of arguments\n"), 1);
 	checkargs(av);
@@ -79,5 +74,5 @@ int	main(int ac, char **av)
 	clear(info.philo, info.nb_philo);
 	free(info.philo);
 	// write (1,"reached the end\n", 16);
-	return (0);
+	// return (0);
 }
