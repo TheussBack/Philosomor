@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:00:31 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/11 23:36:11 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:49:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,24 @@ ssize_t	ft_strlen(char *str)
 	while (str[i])
 		++i;
 	return(i);
+}
+
+int	one_philo(t_philo *philo)
+{
+	printf("[%ld] {1} has taken a fork\n", actual_time());
+	usleep(philo->info->ttd * 1000);
+	creve(philo);
+	return (0);
+}
+
+void	philo_print(t_philo *philo, const char *text)
+{
+	pthread_mutex_lock(&(philo->info->lock));
+	if (philo->status == LIFELESS || philo->info->d_id != -1)
+	{
+		pthread_mutex_unlock(&(philo->info->lock));
+		return ;
+	}
+	printf("[%lu] {%d} %s\n", actual_time(), philo->pos + 1, text);
+	pthread_mutex_unlock(&(philo->info->lock));
 }

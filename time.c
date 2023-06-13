@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:10:05 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/30 16:12:45 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/08 00:54:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,20 @@ void	ft_usleep(long int time_in_ms, t_philo *philo)
 
 long int	actual_time(void)
 {
-	long int	time = 0;
-	struct timeval	curent_time;
-	if (gettimeofday(&curent_time, NULL) == -1)
-		exit_error("error: gettimeofday -1\n");
-	time = (curent_time.tv_sec * 1000) + (curent_time.tv_usec / 1000);
+	static long		init_time = 0;
+	long int		time;
+	struct timeval	tv;
+
+	if (init_time == 0)
+	{
+		gettimeofday(&tv, NULL);
+		init_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+		time = 0;
+	}
+	else
+	{
+		gettimeofday(&tv, NULL);
+		time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000) - init_time;
+	}
 	return (time);
 }

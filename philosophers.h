@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:38:44 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/30 16:36:18 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/08 01:11:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_info
 	int	tts;
 	int	must_eat;
 	int	d_id;
+	int	not;
 	t_philo	*philo;
 	pthread_mutex_t	somebody_dead;
 	pthread_mutex_t	food;
@@ -74,14 +75,18 @@ t_philo *init(t_info *info);
 //error
 void	exit_error(char *str);
 int	clear(t_philo *philo, int nb);
+int	is_dead(t_philo *philo);
+void	creve(t_philo *philo);
 
 //utils
 ssize_t	ft_strlen(char *str);
 long	ft_atoi(char *str);
+int	one_philo(t_philo *philo);
+void	philo_print(t_philo *philo, const char *text);
 
 //actions
-void	sleep(t_philo *philo);
-int	eat(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	eat(t_philo *philo);
 int	forking(t_philo *philo);
 void	think(t_philo	*philo);
 

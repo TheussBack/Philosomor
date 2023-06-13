@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 20:29:44 by hrobin            #+#    #+#              #
-#    Updated: 2023/05/09 11:13:08 by hrobin           ###   ########.fr        #
+#    Updated: 2023/06/07 17:39:42 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS =	error.c \
 		init.c \
 		parse.c \
 		time.c \
-		utils.c
+		utils.c \
+		actions.c
 
 
 OBJS = ${SRCS:.c=.o}

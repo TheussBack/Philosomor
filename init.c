@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/05/30 12:48:43 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/07 18:15:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	init_philos(t_info *info)
 
 int	set_philo(t_info *info, int ac, char **av)
 {
+	info->d_id = -1;
 	info->nb_philo = ft_atoi(av[1]);
 	info->ttd = ft_atoi(av[2]);
 	info->tte = ft_atoi(av[3]);
@@ -68,7 +69,7 @@ int	set_philo(t_info *info, int ac, char **av)
 		info->must_eat = ft_atoi(av[5]);
 	else
 		info->must_eat = 0;
-	if (info->nb_philo < 2 || info->nb_philo > 200 || info->ttd < 0
+	if (info->nb_philo > 200 || info->ttd < 0
 		|| info->tte < 0 || info->tts < 0 || info->must_eat < 0)
 		return (1);
 	return (0);
@@ -84,11 +85,12 @@ t_philo	*init(t_info *info)
 	write (1, "init_philo check\n", 17);
 	if (init_mutexes_info(info))
 		return (NULL);
+	write (1, "init_mutex check\n", 17);
 	if (init_mutexes_philo(info->philo, info->nb_philo))
 		return (NULL);
-	printf("avant do_threads");
+	write (1, "init_mutexes_philo check\n", 25);
 	do_threads(info);
-	printf("apres do_threads");
+	write (1, "apres do threads\n", 17);
 	i = -1;
 	while (++i < info->nb_philo)
 	{
