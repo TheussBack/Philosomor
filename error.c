@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 18:16:06 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/14 15:23:05 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	is_dead(t_philo *philo)
 	}
 	if (philo->info->d_id != -1)
 		return (0);
-	// if (philo->info->not != -1 && philo->eat_count >= philo->info->not)
+	if (philo->info->not != 0 && philo->eat_count >= philo->info->not)
+		return (0);
 	// 	write (1, "dans is dead\n", 13);
-		// return (0);
 	return (1);
 }
 
@@ -61,7 +61,7 @@ void	creve(t_philo *philo)
 		pthread_mutex_unlock(&(philo->info->somebody_dead));
 		return ;
 	}
-	printf("[%lu] {%d} %s\n", actual_time(), philo->pos + 1, "died");
+	printf("%lu %d %s\n", actual_time(), philo->pos + 1, "died");
 	philo->status = LIFELESS;
 	pthread_mutex_unlock(&(philo->info->somebody_dead));
 }

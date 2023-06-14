@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:48 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 14:35:23 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/14 16:04:10 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sleeping(t_philo *philo)
 {
-	philo_print(philo, "is_sleeping");
+	philo_print(philo, "is sleeping");
 	ft_usleep(philo->info->tts, philo);
 }
 
@@ -27,7 +27,7 @@ void	eat(t_philo *philo)
 	// {
 		if (forking(philo))
 		{
-			philo_print(philo, "is_eating");
+			philo_print(philo, "is eating");
 			ft_usleep(philo->info->tte, philo);
 			philo->last_bite = actual_time();
 			philo->eat_count++;
@@ -45,7 +45,7 @@ int	forking(t_philo *philo)
 		pthread_mutex_lock(philo->left_fork);
 		philo_print(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->right_fork);
-		philo_print(philo, "Has taken a fork");
+		philo_print(philo, "has taken a fork");
 		return (1);
 	}
 	else
@@ -61,5 +61,5 @@ int	forking(t_philo *philo)
 
 void	think(t_philo	*philo)
 {
-	philo_print(philo, "is_thinking");
+	philo_print(philo, "is thinking");
 }
