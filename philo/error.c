@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/14 15:23:05 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:39:35 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	is_dead(t_philo *philo)
 	// printf("%li - %i >= %i\n", actual_time(), philo->last_bite, philo->info->ttd);
 	if (actual_time() - philo->last_bite >= (long int)philo->info->ttd)
 	{
+		//ajouter un  mutex 
 		if (philo->info->d_id != -1)
 			return (0);
 		creve(philo);

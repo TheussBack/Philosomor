@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/19 12:06:24 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:45:36 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ void	*routine(void *phil)
 	}
 	if (philo->pos % 2 == 0)
 		usleep(philo->info->tte * 1000);
-	// printf("%i\n", philo->pos);
 	while (is_dead(philo))
 	{
 		eat(philo);
-		sleeping(philo);
-		think(philo);
+		if (is_dead(philo))
+			sleeping(philo);
+		if (is_dead(philo))
+			think(philo);
 	}
 	return (0);
 }
@@ -68,13 +69,12 @@ int	main(int ac, char **av)
 	checkargs(av);
 	if ((set_philo(&info, ac, av)))
 		(printf("wrong args\n"), exit(EXIT_FAILURE));
-	// write (1,"set philo check\n", 16);
+	if (info.nb_philo == 0)
+		(printf("no philo\n"), exit(EXIT_FAILURE));
 	info.philo = init(&info);
-	// write (1, "init check\n", 11);
 	if (info.philo == NULL)
 		exit_error("error: fatal\n");
 	clear(info.philo, info.nb_philo);
 	free(info.philo);
-	// write (1,"reached the end\n", 16);
 	// return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:48 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/14 16:12:04 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:21:11 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	eat(t_philo *philo)
 	if (forking(philo))
 	{
 		philo_print(philo, "is eating");
-		ft_usleep(philo->info->tte, philo);
 		philo->last_bite = actual_time();
+		ft_usleep(philo->info->tte, philo);
 		philo->eat_count++;
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(&philo->right_fork);

@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/14 16:11:31 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:28:47 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_philo	*init(t_info *info)
 	if (init_mutexes_philo(info->philo, info->nb_philo))
 		return (NULL);
 	do_threads(info);
+	//monitor(info);
 	i = -1;
 	while (++i < info->nb_philo)
 	{
