@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/14 15:20:38 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/19 12:06:24 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	*routine(void *phil)
 {
-	t_philo *philo = (t_philo *)phil;
+	t_philo	*philo;
+
+	philo = (t_philo *)phil;
 	if (philo->info->nb_philo == 1)
 	{
 		one_philo(philo);
 		return (NULL);
 	}
 	if (philo->pos % 2 == 0)
-		usleep(100);
+		usleep(philo->info->tte * 1000);
 	// printf("%i\n", philo->pos);
 	while (is_dead(philo))
 	{

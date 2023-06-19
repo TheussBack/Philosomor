@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:37:41 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/14 15:21:25 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/14 16:11:31 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	set_philo(t_info *info, int ac, char **av)
 	if (ac == 6)
 		info->not = ft_atoi(av[5]);
 	else
-		info->not = 0; // jai mit -1 au lieu de 0
+		info->not = 0;
 	if (info->nb_philo > 200 || info->ttd < 0
-		|| info->tte < 0 || info->tts < 0 || info->not < 0) // jai mit -1
+		|| info->tte < 0 || info->tts < 0 || info->not < 0)
 		return (1);
 	return (0);
 }
