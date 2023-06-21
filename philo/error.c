@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:16:35 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/19 14:39:35 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/21 15:29:23 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,39 @@ int	clear(t_philo *philo, int nb)
 
 int	is_dead(t_philo *philo)
 {
-	// printf("%li - %i >= %i\n", actual_time(), philo->last_bite, philo->info->ttd);
+	pthread_mutex_lock(&(philo->mutex));
 	if (actual_time() - philo->last_bite >= (long int)philo->info->ttd)
 	{
-		//ajouter un  mutex 
+		pthread_mutex_unlock(&(philo->mutex));
+		pthread_mutex_lock(&(philo->info->lock));
 		if (philo->info->d_id != -1)
-			return (0);
+			return(pthread_mutex_unlock(&(philo->info->lock)), 0);
+		pthread_mutex_unlock(&(philo->info->lock));
 		creve(philo);
-		philo->info->d_id = philo->pos + 1;
 		return (0);
 	}
+	pthread_mutex_unlock(&(philo->mutex));
+	pthread_mutex_lock(&(philo->info->lock));
 	if (philo->info->d_id != -1)
-		return (0);
+		return(pthread_mutex_unlock(&(philo->info->lock)), 0);
+	pthread_mutex_unlock(&(philo->info->lock));
+	pthread_mutex_lock(&(philo->mutex));
 	if (philo->info->not != 0 && philo->eat_count >= philo->info->not)
-		return (0);
-	// 	write (1, "dans is dead\n", 13);
+		return (pthread_mutex_unlock(&(philo->mutex)), 0);
+	pthread_mutex_unlock(&(philo->mutex));
 	return (1);
 }
 
 void	creve(t_philo *philo)
 {
-	pthread_mutex_lock(&(philo->info->somebody_dead));
+	pthread_mutex_lock(&(philo->info->lock));
 	if (philo->info->d_id != -1)
 	{
-		pthread_mutex_unlock(&(philo->info->somebody_dead));
+		pthread_mutex_unlock(&(philo->info->lock));
 		return ;
 	}
 	printf("%lu %d %s\n", actual_time(), philo->pos + 1, "died");
+	philo->info->d_id = philo->pos + 1;
 	philo->status = LIFELESS;
-	pthread_mutex_unlock(&(philo->info->somebody_dead));
+	pthread_mutex_unlock(&(philo->info->lock));
 }

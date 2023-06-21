@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:00:31 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/14 15:07:18 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/21 15:12:43 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ long	ft_atoi(char *str)
 			s = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] < '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res *= 10;
 		res += str[i] - '0';
@@ -66,4 +66,21 @@ void	philo_print(t_philo *philo, const char *text)
 	}
 	printf("%lu %d %s\n", actual_time(), philo->pos + 1, text);
 	pthread_mutex_unlock(&(philo->info->lock));
+}
+
+void	monitoring(t_info *info)
+{
+	int	i;
+
+	while (1)
+	{
+		i = 0;
+		while (i < info->nb_philo)
+		{
+			if (is_dead(&info->philo[i]))
+				i++;
+			else return ;
+		}
+		usleep(100);
+	}
 }
