@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:25:14 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/19 14:45:36 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:17:22 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,16 @@ void	do_threads(t_info *info)
 	i = -1;
 	while ((++i < info->nb_philo) && (&info->philo[i]))
 	{
-		// if (i % 2 == 0)
-			if(pthread_create(&(info->philo[i].philo_id), NULL, &routine,
-			(void *)&info->philo[i]) != 0)
-				return ;
+		if (pthread_create(&(info->philo[i].philo_id), NULL, &routine,
+				(void *)&info->philo[i]) != 0)
+			return ;
 	}
-	// usleep(10);
-	// i = -1;
-	// while ((++i < info->nb_philo) && (&info->philo[i]))
-	// {
-	// 	if (i % 2 != 0)
-	// 		if(pthread_create(&(info->philo[i].philo_id), NULL, &routine,
-	// 		(void *)&info->philo[i]) != 0)
-	// 			return ;
-	// }
 }
 
 int	main(int ac, char **av)
 {
 	t_info	info;
-	int i;
+	int		i;
 
 	i = 0;
 	if (ac < 5 || ac > 6)
@@ -76,5 +66,4 @@ int	main(int ac, char **av)
 		exit_error("error: fatal\n");
 	clear(info.philo, info.nb_philo);
 	free(info.philo);
-	// return (0);
 }

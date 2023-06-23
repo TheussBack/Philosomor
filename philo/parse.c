@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:10:15 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/13 18:08:39 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:17:46 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	checkargs(char **av)
 int	is_digit(char *stack)
 {
 	int	i;
-	
+
 	i = -1;
 	while (stack[i + 1] == '-' || stack[i + 1] == '+')
 		i++;
@@ -38,7 +38,7 @@ int	is_digit(char *stack)
 		if (!(stack[i] >= 48 && stack[i] <= 57))
 			return (1);
 	if (ft_atoi(stack) > 2147483647
-			|| ft_atoi(stack) < -2147483648)
+		|| ft_atoi(stack) < -2147483648)
 		return (1);
 	return (0);
 }

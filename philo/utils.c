@@ -6,7 +6,7 @@
 /*   By: hrobin <hrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:00:31 by hrobin            #+#    #+#             */
-/*   Updated: 2023/06/21 15:12:43 by hrobin           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:20:05 by hrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 long	ft_atoi(char *str)
 {
-	long res;
-	int	s;
-	int i;
+	long	res;
+	int		s;
+	int		i;
 
 	res = 0;
 	s = 1;
@@ -45,7 +45,7 @@ ssize_t	ft_strlen(char *str)
 	i = -1;
 	while (str[i])
 		++i;
-	return(i);
+	return (i);
 }
 
 int	one_philo(t_philo *philo)
@@ -79,7 +79,8 @@ void	monitoring(t_info *info)
 		{
 			if (is_dead(&info->philo[i]))
 				i++;
-			else return ;
+			else
+				return ;
 		}
 		usleep(100);
 	}
